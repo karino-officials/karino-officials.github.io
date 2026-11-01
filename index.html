@@ -66,6 +66,15 @@ details p{color:var(--muted);padding:0 0 16px;font-size:16.5px}
 .contact-box .who{color:var(--muted);font-size:16px;margin-bottom:18px}
 .stack{display:flex;flex-direction:column;gap:11px;max-width:440px;margin:0 auto}
 .stack .btn{width:100%}
+.messengers{margin-top:22px;border-top:1px solid var(--line);padding-top:18px;text-align:center}
+.messengers h3{font-size:20px;margin-bottom:4px}
+.messengers p{color:var(--muted);font-size:16px}
+.msg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px;margin:13px auto 0}
+.msg-grid .btn{width:100%;min-height:54px;padding:10px 12px;font-size:17px;line-height:1.5}
+.btn-tg{background:#229ED9;color:#fff}
+.btn-copy{background:transparent;border-color:#3a3a3a;color:var(--text)}
+.msg-grid .num{font-size:16px}
+@media (max-width:430px){.msg-grid{grid-template-columns:1fr}}
 /* footer */
 footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 10px;text-align:center;color:var(--muted);font-size:15px}
 /* sticky bar */
@@ -203,6 +212,16 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 10px;text
         <a class="btn btn-ghost" href="https://balad.ir/search/%D8%AA%D8%B9%D9%85%DB%8C%D8%B1%DA%AF%D8%A7%D9%87%20%DA%A9%D8%A7%D8%B1%DB%8C%D9%86%D9%88%20%D8%B4%D9%87%D8%B1%20%D8%A7%D8%A8%D8%B1%DB%8C%D8%B4%D9%85%20%D8%A7%D8%B5%D9%81%D9%87%D8%A7%D9%86" target="_blank" rel="noopener">مسیریابی با نقشه بلد</a>
         <a class="btn btn-ghost" href="https://www.instagram.com/karino_officials" target="_blank" rel="noopener">اینستاگرام کارینو: karino_officials@</a>
       </div>
+      <div class="messengers">
+        <h3>پیام‌رسان‌ها</h3>
+        <p>برای ارسال عکس یا فیلم مشکل خودرو، با شماره <span class="num">09107438958</span> در پیام‌رسان‌ها پیام بدهید.</p>
+        <div class="msg-grid">
+          <a class="btn btn-wa" href="https://wa.me/989107438958?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%AA%D8%B9%D9%85%DB%8C%D8%B1%20%D8%AE%D9%88%D8%AF%D8%B1%D9%88%20%D8%AF%D8%B1%20%DA%A9%D8%A7%D8%B1%DB%8C%D9%86%D9%88%20%D8%B1%D8%A7%D9%87%D9%86%D9%85%D8%A7%DB%8C%DB%8C%20%D9%85%DB%8C%E2%80%8C%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%D9%85" target="_blank" rel="noopener">واتساپ</a>
+          <a class="btn btn-tg" href="https://t.me/+989107438958" target="_blank" rel="noopener">تلگرام</a>
+          <button class="btn btn-copy copy-number" type="button" data-copy="09107438958">ایتا — <span class="num">09107438958</span></button>
+          <button class="btn btn-copy copy-number" type="button" data-copy="09107438958">روبیکا — <span class="num">09107438958</span></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -225,5 +244,30 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 10px;text
   </a>
 </div>
 
+
+<script>
+document.querySelectorAll('.copy-number').forEach(function (btn) {
+  var original = btn.innerHTML;
+  var timer;
+  btn.addEventListener('click', async function () {
+    var number = btn.getAttribute('data-copy');
+    try {
+      await navigator.clipboard.writeText(number);
+    } catch (e) {
+      var ta = document.createElement('textarea');
+      ta.value = number;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    btn.innerHTML = 'کپی شد';
+    clearTimeout(timer);
+    timer = setTimeout(function () { btn.innerHTML = original; }, 1600);
+  });
+});
+</script>
 </body>
 </html>
